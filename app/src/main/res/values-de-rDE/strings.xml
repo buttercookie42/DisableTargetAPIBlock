@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Disable Target API Block</string>
+    <string name="xposed_desc">Umgehe die Installationssperre von Apps, welche für ältere Android-Versionen entwickelt wurden</string>
+</resources>
