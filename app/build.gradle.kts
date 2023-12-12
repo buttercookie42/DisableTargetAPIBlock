@@ -23,6 +23,13 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+    packaging {
+        resources {
+            // Not needed as long as we don't use reflection with Kotlin
+            excludes.add("**/*.kotlin_builtins")
+            excludes.add("**/*.kotlin_module")
+        }
+    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
