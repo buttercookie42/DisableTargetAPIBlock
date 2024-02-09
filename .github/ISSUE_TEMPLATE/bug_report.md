@@ -31,4 +31,4 @@ If applicable, please provide the LSposed module logs.
  - Xposed version: [e.g. LSposed 1.9.2)
 
 **Additional context**
-Add any other context about the problem here.
+Add any other context about the problem here. Does the problem happen only with certain APKs (and if yes, which ones?) or all of them, does (after disabling this module) installing the APK manually via ADB (`adb install --bypass-low-target-sdk-block <path to APK>`) still work, etc.
