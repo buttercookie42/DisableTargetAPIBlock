@@ -18,6 +18,8 @@ import de.robv.android.xposed.callbacks.XC_LoadPackage;
 public class DisableTargetApiBlock implements IXposedHookLoadPackage {
     private static final String LOGTAG = "DisableTargetApiBlock";
 
+    private static final String CLASS_INSTALL_PACKAGE_HELPER = "com.android.server.pm.InstallPackageHelper";
+    private static final String CLASS_INSTALL_REQUEST = "com.android.server.pm.InstallRequest";
     private static final int INSTALL_BYPASS_LOW_TARGET_SDK_BLOCK = 0x01000000;
 
     @Keep
@@ -30,8 +32,8 @@ public class DisableTargetApiBlock implements IXposedHookLoadPackage {
             return;
         }
 
-        findAndHookMethod("com.android.server.pm.InstallPackageHelper", lpparam.classLoader,
-                "preparePackageLI", "com.android.server.pm.InstallRequest", new XC_MethodHook() {
+        findAndHookMethod(CLASS_INSTALL_PACKAGE_HELPER, lpparam.classLoader,
+                "preparePackageLI", CLASS_INSTALL_REQUEST, new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         Object request = param.args[0];
