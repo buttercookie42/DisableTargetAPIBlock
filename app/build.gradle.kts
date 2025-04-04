@@ -11,12 +11,12 @@ externalProperties {
 
 android {
     namespace = "de.buttercookie.disabletargetapiblock"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "de.buttercookie.disabletargetapiblock"
         minSdk = 34
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 4
         versionName = "1.1a1"
 
