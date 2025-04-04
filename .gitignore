@@ -79,7 +79,9 @@ obj/
 .idea/shelf/
 .idea/workspace.xml
 .idea/tasks.xml
+.idea/AndroidProjectSystem.xml
 .idea/deploymentTargetDropDown.xml
+.idea/deploymentTargetSelector.xml
 .idea/.name
 .idea/compiler.xml
 .idea/copyright/profiles_settings.xml
@@ -99,6 +101,8 @@ obj/
 .idea/gradle.xml
 .idea/jarRepositories.xml
 .idea/navEditor.xml
+.idea/runConfigurations.xml
+.idea/markdown.xml
 
 # Legacy Eclipse project files
 .classpath
