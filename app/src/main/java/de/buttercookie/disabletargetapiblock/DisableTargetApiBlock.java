@@ -4,15 +4,18 @@
 
 package de.buttercookie.disabletargetapiblock;
 
-import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
+import static de.robv.android.xposed.XposedHelpers.findMethodExactIfExists;
 import static de.robv.android.xposed.XposedHelpers.getIntField;
 import static de.robv.android.xposed.XposedHelpers.getObjectField;
 import static de.robv.android.xposed.XposedHelpers.setIntField;
 
 import androidx.annotation.Keep;
 
+import java.lang.reflect.Method;
+
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
+import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 public class DisableTargetApiBlock implements IXposedHookLoadPackage {
@@ -32,8 +35,19 @@ public class DisableTargetApiBlock implements IXposedHookLoadPackage {
             return;
         }
 
-        findAndHookMethod(CLASS_INSTALL_PACKAGE_HELPER, lpparam.classLoader,
-                "preparePackageLI", CLASS_INSTALL_REQUEST, new XC_MethodHook() {
+        Method method = findMethodExactIfExists(CLASS_INSTALL_PACKAGE_HELPER, lpparam.classLoader,
+                "preparePackageLI", CLASS_INSTALL_REQUEST);
+        if (method == null) {
+            // Method name changed between Android 15.0.0_r17 and r20
+            method = findMethodExactIfExists(CLASS_INSTALL_PACKAGE_HELPER, lpparam.classLoader,
+                    "preparePackage", CLASS_INSTALL_REQUEST);
+        }
+        if (method == null) {
+            XposedBridge.log(LOGTAG + ": method to hook not found");
+            return;
+        }
+
+        XposedBridge.hookMethod(method, new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         Object request = param.args[0];
