@@ -66,7 +66,7 @@ android {
 }
 
 dependencies {
-    implementation("androidx.annotation:annotation:1.8.2")
+    implementation("androidx.annotation:annotation:1.9.1")
     compileOnly ("de.robv.android.xposed:api:82")
 
     testImplementation("junit:junit:4.13.2")
