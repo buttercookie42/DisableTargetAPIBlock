@@ -29,10 +29,14 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            // This doesn't support Mercurial right now and also only causes confusion with
+            // reproducible builds, which will likely build from the Github repository.
+            vcsInfo.include = false
         }
     }
     packaging {
         resources {
+            excludes.add("META-INF/**/annotation/LICENSE.txt")
             // Not needed as long as we don't use reflection with Kotlin
             excludes.add("**/*.kotlin_builtins")
             excludes.add("**/*.kotlin_module")
