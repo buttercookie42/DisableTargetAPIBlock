@@ -1,0 +1,1 @@
+Xposed module for disabling Android 14's installation block for old apps
