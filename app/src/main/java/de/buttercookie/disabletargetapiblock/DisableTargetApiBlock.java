@@ -4,6 +4,7 @@
 
 package de.buttercookie.disabletargetapiblock;
 
+import static de.robv.android.xposed.XposedHelpers.findAndHookMethod;
 import static de.robv.android.xposed.XposedHelpers.findMethodExactIfExists;
 import static de.robv.android.xposed.XposedHelpers.getIntField;
 import static de.robv.android.xposed.XposedHelpers.getObjectField;
@@ -35,6 +36,9 @@ public class DisableTargetApiBlock implements IXposedHookLoadPackage {
             case "android":
                 hookFramework(lpparam);
                 break;
+            case "org.fdroid.fdroid":
+                hookFdroid(lpparam);
+                break;
         }
     }
 
@@ -63,6 +67,16 @@ public class DisableTargetApiBlock implements IXposedHookLoadPackage {
                         int installFlags = getIntField(installArgs, "mInstallFlags");
                         installFlags |= INSTALL_BYPASS_LOW_TARGET_SDK_BLOCK;
                         setIntField(installArgs, "mInstallFlags", installFlags);
+                    }
+                });
+    }
+
+    private static void hookFdroid(XC_LoadPackage.LoadPackageParam lpparam) {
+        findAndHookMethod("org.fdroid.CompatibilityCheckerUtils", lpparam.classLoader,
+                "minInstallableTargetSdk", int.class, new XC_MethodHook() {
+                    @Override
+                    protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
+                        param.setResult(1);
                     }
                 });
     }

@@ -2,5 +2,6 @@
 <resources>
     <string-array name="module_scope">
         <item>android</item>
+        <item>org.fdroid.fdroid</item>
     </string-array>
 </resources>
