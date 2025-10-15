@@ -31,10 +31,14 @@ public class DisableTargetApiBlock implements IXposedHookLoadPackage {
     @Keep
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
-        if (!lpparam.packageName.equals("android")) {
-            return;
+        switch (lpparam.packageName) {
+            case "android":
+                hookFramework(lpparam);
+                break;
         }
+    }
 
+    private static void hookFramework(XC_LoadPackage.LoadPackageParam lpparam) {
         Method method = findMethodExactIfExists(CLASS_INSTALL_PACKAGE_HELPER, lpparam.classLoader,
                 "preparePackageLI", CLASS_INSTALL_REQUEST);
         if (method == null) {
