@@ -11,12 +11,12 @@ externalProperties {
 
 android {
     namespace = "de.buttercookie.disabletargetapiblock"
-    compileSdk = 35
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "de.buttercookie.disabletargetapiblock"
         minSdk = 34
-        targetSdk = 35
+        targetSdk = 36
         versionCode = 4
         versionName = "1.1"
         base.archivesName = "$applicationId-$versionName"
@@ -75,8 +75,8 @@ dependencies {
     compileOnly ("de.robv.android.xposed:api:82")
 
     testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.2.1")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
+    androidTestImplementation("androidx.test.ext:junit:1.3.0")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.7.0")
 }
 
 fun ApkSigningConfig.checkExternalSigningConfig(): Boolean {
