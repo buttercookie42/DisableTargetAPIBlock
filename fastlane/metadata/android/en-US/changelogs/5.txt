@@ -1,0 +1,1 @@
+- Support marking affected apps as compatible again in F-Droid
