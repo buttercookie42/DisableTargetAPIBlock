@@ -15,8 +15,8 @@ This module can also be enabled for the official F-Droid client, which will over
 compatibility checking so that old apps no longer appear as incompatible on modern devices.
 
 For technical reasons, you currently need to clear F-Droid's app data in order to reset the
-compatibility data for all old apps after enabling this module, so make sure make a backup and to
-note down any custom repositories you added as well as any relevant setting custom settings.
+compatibility data for all old apps after enabling this module, so make sure to make a backup and to
+note down any custom repositories you added as well as any relevant custom settings.
 
 Alternatively, you can just
 delete `/data/data/org.fdroid.fdroid/databases/fdroid_db*`, but this will still lose all custom
